@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+<html lang="id" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Pembelajaran Interaktif PAI Kelas 7 - Sholat Lima Waktu</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        islamic: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                            800: '#065f46',
+                            900: '#064e3b',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        arabic: ['Amiri', 'Traditional Arabic', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts: Inter & Amiri for Arabic text -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .font-arabic { font-family: 'Amiri', serif; direction: rtl; }
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        .dark ::-webkit-scrollbar-track { background: #1e293b; }
+        .dark ::-webkit-scrollbar-thumb { background: #475569; }
+        @media print {
+            .no-print { display: none !important; }
+            .print-only { display: block !important; }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-200">
+
+    <header class="sticky top-0 z-50 bg-white/90 dark:bg-slate-800/95 backdrop-blur border-b border-slate-200 dark:border-slate-700 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-islamic-600 flex items-center justify-center text-white shadow-md">
+                    <i class="fa-solid fa-mosque text-lg"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-sm sm:text-base text-islamic-800 dark:text-islamic-400">PAI KELAS 7</h1>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Sholat Lima Waktu</p>
+                </div>
+            </div>
+
+            <!-- Desktop Nav / Actions -->
+            <div class="hidden md:flex items-center space-x-3">
+                <button onclick="openGoogleDocs()" class="px-3 py-1.5 text-xs font-medium rounded-lg bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-700 hover:bg-emerald-100 transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-book-bookmark"></i> Google Docs
+                </button>
+                <button onclick="toggleAudio()" id="audioMuteBtn" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition" title="Mute/Unmute Audio">
+                    <i class="fa-solid fa-volume-high"></i>
+                </button>
+                <button onclick="toggleDarkMode()" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition" title="Dark Mode">
+                    <i class="fa-solid fa-moon dark:fa-sun"></i>
+                </button>
+                <button onclick="window.print()" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition" title="Cetak Materi">
+                    <i class="fa-solid fa-print"></i>
+                </button>
+            </div>
+
+            <!-- Mobile menu button -->
+            <div class="flex items-center md:hidden space-x-2">
+                <button onclick="toggleDarkMode()" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300">
+                    <i class="fa-solid fa-moon dark:fa-sun"></i>
+                </button>
+                <button onclick="toggleMobileMenu()" class="p-2 rounded-lg bg-islamic-600 text-white">
+                    <i class="fa-solid fa-bars text-lg"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 px-4 pt-2 pb-4 space-y-2">
+            <button onclick="openGoogleDocs(); toggleMobileMenu();" class="w-full text-left px-3 py-2 rounded-lg bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 text-sm font-medium flex items-center gap-2">
+                <i class="fa-solid fa-book-bookmark"></i> Buka Google Docs Materi
+            </button>
+            <button onclick="window.print(); toggleMobileMenu();" class="w-full text-left px-3 py-2 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 text-sm font-medium flex items-center gap-2">
+                <i class="fa-solid fa-print"></i> Cetak Materi
+            </button>
+        </div>
+    </header>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 w-full grid grid-cols-1 md:grid-cols-4 gap-6">
+        
+        <!-- Sidebar Menu / Navigation -->
+        <aside class="md:col-span-1 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 p-4 h-fit sticky top-20">
+            <div class="mb-4 pb-3 border-b border-slate-100 dark:border-slate-700 flex items-center justify-between">
+                <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Menu Utama</span>
+                <span id="overallProgressText" class="text-xs font-bold text-islamic-600 dark:text-islamic-400">0% Selesai</span>
+            </div>
+            <!-- Progress Bar -->
+            <div class="w-full bg-slate-100 dark:bg-slate-700 h-2 rounded-full mb-4 overflow-hidden">
+                <div id="overallProgressBar" class="bg-islamic-600 h-full w-0 transition-all duration-300"></div>
+            </div>
+
+            <!-- Menu List -->
+            <nav class="space-y-1 max-h-[calc(100vh-250px)] overflow-y-auto pr-1" id="navigationMenuList">
+                <!-- Injected via JavaScript -->
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="md:col-span-3 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 p-5 sm:p-8 min-h-[600px] flex flex-col justify-between">
+            
+            <div id="appContainer" class="space-y-6">
+                <!-- Dynamic Content Views Loaded Here -->
+            </div>
+
+            <!-- Global Footer Navigation Buttons -->
+            <div class="mt-8 pt-4 border-t border-slate-100 dark:border-slate-700 flex flex-wrap items-center justify-between gap-3 no-print">
+                <button onclick="prevSection()" id="prevBtn" class="px-4 py-2 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 text-sm font-semibold rounded-xl transition flex items-center gap-2">
+                    <i class="fa-solid fa-arrow-left"></i> SEBELUMNYA
+                </button>
+                <div class="flex items-center gap-2">
+                    <button onclick="resetCurrentSection()" class="px-3 py-2 bg-amber-50 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 text-xs font-semibold rounded-xl hover:bg-amber-100 transition" title="Ulangi Bagian Ini">
+                        <i class="fa-solid fa-rotate-right"></i> ULANGI
+                    </button>
+                    <span id="pageIndicator" class="text-xs font-medium text-slate-400">1 / 21</span>
+                </div>
+                <button onclick="nextSection()" id="nextBtn" class="px-4 py-2 bg-islamic-600 hover:bg-islamic-700 text-white text-sm font-semibold rounded-xl transition flex items-center gap-2 shadow-sm">
+                    SELANJUTNYA <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <div id="modalContainer" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-800 rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-200 dark:border-slate-700 transform transition-all text-center">
+            <div id="modalIcon" class="w-16 h-16 rounded-full bg-islamic-100 dark:bg-islamic-900/50 text-islamic-600 dark:text-islamic-400 flex items-center justify-center text-3xl mx-auto mb-4">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <h3 id="modalTitle" class="text-lg font-bold text-slate-800 dark:text-slate-100 mb-2">Informasi</h3>
+            <p id="modalMessage" class="text-sm text-slate-600 dark:text-slate-300 mb-6">Pesan modal...</p>
+            <button onclick="closeModal()" class="w-full py-2.5 bg-islamic-600 hover:bg-islamic-700 text-white font-semibold rounded-xl transition">
+                Mengerti / Tutup
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Configuration Variables
+        const GOOGLE_DOCS_URL = "https://docs.google.com/document/d/1_PLACEHOLDER_FOR_GOOGLE_DOCS/edit";
+        const GOOGLE_SHEETS_URL = "https://script.google.com/macros/s/1_PLACEHOLDER_FOR_APPS_SCRIPT/exec";
+
+        // Application State
+        let currentSectionIndex = 0;
+        let visitedSections = new Set([0]);
+        let audioEnabled = true;
+        let quizAnswers = {};
+        let quizSubmitted = false;
+        let quizTimer = 0;
+        let timerInterval = null;
+        let trueFalseAnswers = {};
+        let matchingAnswers = {};
+        let sequenceAnswers = {};
+        let guessAnswers = {};
+        let studentName = localStorage.getItem('pai_student_name') || '';
+        let studentClass = localStorage.getItem('pai_student_class') || '';
+        let studentRefleksi = {
+            paham: localStorage.getItem('pai_ref_paham') || '',
+            hafal: localStorage.getItem('pai_ref_hafal') || '',
+            tataCara: localStorage.getItem('pai_ref_tatacara') || '',
+            tertib: localStorage.getItem('pai_ref_tertib') || ''
+        };
+
+        // Menu items definition
+        const menuItems = [
+            { id: 'beranda', title: 'Beranda', icon: 'fa-house' },
+            { id: 'tujuan', title: 'Tujuan Pembelajaran', icon: 'fa-bullseye' },
+            { id: 'materi_utama', title: 'Materi Sholat Lima Waktu', icon: 'fa-book-open' },
+            { id: 'pengertian', title: 'Pengertian Sholat', icon: 'fa-book' },
+            { id: 'dalil', title: 'Dalil Perintah Sholat', icon: 'fa-quran' },
+            { id: 'macam_sholat', title: 'Macam-Macam Sholat', icon: 'fa-list-check' },
+            { id: 'waktu_sholat', title: 'Waktu Sholat Lima Waktu', icon: 'fa-clock' },
+            { id: 'syarat_wajib', title: 'Syarat Wajib Sholat', icon: 'fa-user-check' },
+            { id: 'syarat_sah', title: 'Syarat Sah Sholat', icon: 'fa-shield-halved' },
+            { id: 'rukun_sholat', title: 'Rukun Sholat', icon: 'fa-layer-group' },
+            { id: 'sunnah_sholat', title: 'Sunnah-Sunnah Sholat', icon: 'fa-star' },
+            { id: 'pembatal_sholat', title: 'Hal yang Membatalkan Sholat', icon: 'fa-triangle-exclamation' },
+            { id: 'tata_cara', title: 'Tata Cara Sholat', icon: 'fa-person-praying' },
+            { id: 'bacaan_doa', title: 'Bacaan dan Doa Sholat', icon: 'fa-volume-high' },
+            { id: 'tutorial_video', title: 'Video/Tutorial Sholat', icon: 'fa-video' },
+            { id: 'latihan_soal', title: 'Latihan Soal', icon: 'fa-pen-to-square' },
+            { id: 'kuis_interaktif', title: 'Kuis Interaktif', icon: 'fa-puzzle-piece' },
+            { id: 'evaluasi', title: 'Evaluasi', icon: 'fa-clipboard-check' },
+            { id: 'nilai_saya', title: 'Nilai Saya', icon: 'fa-award' },
+            { id: 'refleksi', title: 'Refleksi', icon: 'fa-comments' },
+            { id: 'sumber_belajar', title: 'Sumber Belajar', icon: 'fa-link' }
+        ];
+
+        // Rukun Sholat Data
+        const rukunSholatData = [
+            { no: 1, title: "Niat", desc: "Menghadirkan niat di dalam hati untuk melaksanakan sholat tertentu karena Allah Ta'ala." },
+            { no: 2, title: "Berdiri Tegak bagi yang Mampu", desc: "Berdiri tegak menghadap kiblat ketika melaksanakan sholat fardhu bagi yang mampu." },
+            { no: 3, title: "Takbiratul Ihram", desc: "Mengucapkan takbir 'Allahu Akbar' sambil mengangkat kedua tangan sebagai tanda memulai sholat." },
+            { no: 4, title: "Membaca Surah Al-Fatihah", desc: "Membaca surah Al-Fatihah pada setiap rakaat sholat." },
+            { no: 5, title: "Rukuk dengan Thumakninah", desc: "Membungkuk hingga punggung rata dengan kepala lurus, disertai tenang (thumakninah)." },
+            { no: 6, title: "I'tidal dengan Thumakninah", desc: "Bangkit dari rukuk dan berdiri tegak dengan tenang." },
+            { no: 7, title: "Sujud Dua Kali dengan Thumakninah", desc: "Meletakkan tujuh anggota sujud ke lantai dengan tenang, dilakukan dua kali setiap rakaat." },
+            { no: 8, title: "Duduk di Antara Dua Sujud", desc: "Duduk di antara dua sujud dengan thumakninah." },
+            { no: 9, title: "Tasyahud Akhir", desc: "Duduk tasyahud akhir pada rakaat terakhir sholat." },
+            { no: 10, title: "Membaca Shalawat Nabi", desc: "Membaca shalawat kepada Nabi Muhammad SAW pada saat tasyahud akhir." },
+            { no: 11, title: "Salam Pertama", desc: "Menoleh ke kanan dan ke kiri mengucapkan 'Assalamu'alaikum warahmatullah'." },
+            { no: 12, title: "Tertib", desc: "Melaksanakan seluruh rukun secara berurutan dari awal hingga akhir." }
+        ];
+
+        // Pembatal Sholat Data
+        const pembatalSholatData = [
+            { title: "Berhadas Kecil atau Besar", desc: "Keluar sesuatu dari dubur atau qubul, atau hilang akal (pingsan, gila)." },
+            { title: "Terkena Najis", desc: "Terkena najis pada badan, pakaian, atau tempat sholat yang tidak segera dibersihkan." },
+            { title: "Terbuka Aurat", desc: "Sengaja atau tidak sengaja terbukanya aurat saat sedang sholat." },
+            { title: "Berbicara dengan Sengaja", desc: "Berbicara dengan kata-kata manusia dengan sengaja di luar bacaan sholat." },
+            { title: "Tertawa Terbahak-bahak", desc: "Tertawa yang mengeluarkan suara hingga terdengar." },
+            { title: "Bergerak Aktif Terus-menerus", desc: "Melakukan gerakan di luar gerakan sholat secara berturut-turut sebanyak 3 kali atau lebih." },
+            { title: "Makan atau Minum", desc: "Makan atau minum walaupun sedikit dengan sengaja saat sholat." },
+            { title: "Berubah Niat atau Membelakangi Kiblat", desc: "Sengaja membelakangi arah kiblat atau mengubah niat di tengah sholat." }
+        ];
+
+        // Bacaan dan Doa Data
+        const bacaanDoaData = [
+            { name: "Niat Sholat Subuh", arabic: "أُصَلِّيْ فَرْضَ الصُّبْحِ رَكْعَتَيْنِ مُسْتَقْبِلَ الْقِبْلَةِ أَدَاءً لِلَّهِ تَعَالَى", latin: "Us-sallii fardhas-subhi rak'ataini mustaqbilal qiblati adaaa'an lillaahi ta'aalaa.", arti: "Aku berniat sholat fardhu Subuh dua rakaat menghadap kiblat karena Allah Ta'ala." },
+            { name: "Niat Sholat Zuhur", arabic: "أُصَلِّيْ فَرْضَ الظُّهْرِ أَرْبَعَ رَكَعَاتٍ مُسْتَقْبِلَ الْقِبْلَةِ أَدَاءً لِلَّهِ تَعَالَى", latin: "Us-sallii fardhaz-zuhri arba'a raka'aatin mustaqbilal qiblati adaaa'an lillaahi ta'aalaa.", arti: "Aku berniat sholat fardhu Zuhur empat rakaat menghadap kiblat karena Allah Ta'ala." },
+            { name: "Niat Sholat Asar", arabic: "أُصَلِّيْ فَرْضَ الْعَصْرِ أَرْبَعَ رَكَعَاتٍ مُسْتَقْبِلَ الْقِبْلَةِ أَدَاءً لِلَّهِ تَعَالَى", latin: "Us-sallii fardhal-'asri arba'a raka'aatin mustaqbilal qiblati adaaa'an lillaahi ta'aalaa.", arti: "Aku berniat sholat fardhu Asar empat rakaat menghadap kiblat karena Allah Ta'ala." },
+            { name: "Niat Sholat Magrib", arabic: "أُصَلِّيْ فَرْضَ الْمَغْرِبِ ثَلَاثَ رَكَعَاتٍ مُسْتَقْبِلَ الْقِبْلَةِ أَدَاءً لِلَّهِ تَعَالَى", latin: "Us-sallii fardhal-maghribi tsalaatsa raka'aatin mustaqbilal qiblati adaaa'an lillaahi ta'aalaa.", arti: "Aku berniat sholat fardhu Magrib tiga rakaat menghadap kiblat karena Allah Ta'ala." },
+            { name: "Niat Sholat Isya", arabic: "أُصَلِّيْ فَرْضَ الْعِشَاءِ أَرْبَعَ رَكَعَاتٍ مُسْتَقْبِلَ الْقِبْلَةِ أَدَاءً لِلَّهِ تَعَالَى", latin: "Us-sallii fardhal-'isyaa'i arba'a raka'aatin mustaqbilal qiblati adaaa'an lillaahi ta'aalaa.", arti: "Aku berniat sholat fardhu Isya empat rakaat menghadap kiblat karena Allah Ta'ala." },
+            { name: "Takbiratul Ihram", arabic: "اللَّهُ أَكْبَرُ", latin: "Allahu Akbar", arti: "Allah Maha Besar." },
+            { name: "Doa Iftitah", arabic: "اللَّهُ أَكْبَرُ كَبِيْرًا وَالْحَمْدُ لِلَّهِ كَثِيْرًا وَسُبْحَانَ اللَّهِ بُكْرَةً وَأَصِيْلًا...", latin: "Allaahu akbar kabiiroo wal-hamdu lillaahi katsiiroo, wa subhaanallaahi bukratan wa ashiila...", arti: "Allah Maha Besar dengan sebesar-besarnya... (lengkap sesuai standar Kemenag RI)." },
+            { name: "Surah Al-Fatihah", arabic: "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ. الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ...", latin: "Bismillaahir-rahmaanir-rahiim. Al-hamdu lillaahi rabbil-'alamiin...", arti: "Dengan nama Allah Yang Maha Pengasih lagi Maha Penyayang. Segala puji bagi Allah, Tuhan seluruh alam..." },
+            { name: "Bacaan Rukuk", arabic: "سُبْحَانَ رَبِّيَ الْعَظِيْمِ وَبِحَمْدِهِ", latin: "Subhaana rabbiyal-'azhiimi wa bihamdih (3x)", arti: "Maha Suci Tuhanku Yang Maha Agung dan dengan memuji-Nya." },
+            { name: "Bacaan I'tidal", arabic: "سَمِعَ اللَّهُ لِمَنْ حَمِدَهُ، رَبَّنَا وَلَكَ الْحَمْدُ", latin: "Sami'allahu liman hamidah, rabbanaa wa lakal-hamd.", arti: "Allah mendengar orang yang memuji-Nya. Ya Tuhan kami, bagi-Mu segala puji." },
+            { name: "Bacaan Sujud", arabic: "سُبْحَانَ رَبِّيَ الأَعْلَى وَبِحَمْدِهِ", latin: "Subhaana rabbiyal-a'laa wa bihamdih (3x)", arti: "Maha Suci Tuhanku Yang Maha Tinggi dan dengan memuji-Nya." },
+            { name: "Duduk di Antara Dua Sujud", arabic: "رَبِّ اغْفِرْلِيْ وَرَحْمْنِيْ وَاجْبُرْنِيْ وَارْفَعْنِيْ وَارْزُقْنِيْ وَاهْدِنِيْ وَعَافِنِيْ وَاعْفُ عَنِّيْ", latin: "Rabbighfirlii warhamnii wajburnii warfa'nii warzuqnii wahdinii wa 'aafinii wa'fu 'annii.", arti: "Ya Allah, ampunilah dosaku, sayangilah aku, cukupkanlah aku, angkatlah derajatku, berilah aku rezeki, berilah aku petunjuk, sehatkanlah aku, dan maafkanlah aku." },
+            { name: "Tasyahud Akhir", arabic: "التَّحِيَّاتُ الْمُبَارَكَاتُ الصَّلَوَاتُ الطَّيِّبَاتُ لِلَّهِ...", latin: "At-tahiyyaatul-mubaarakaatush-shalawatuth-thayyibaatu lillaah...", arti: "Segala kehormatan, keberkahan, shalawat, dan kebaikan hanya bagi Allah..." },
+            { name: "Salam", arabic: "السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللَّهِ", latin: "Assalamu'alaikum warahmatullah", arti: "Semoga keselamatan dan rahmat Allah dilimpahkan kepada kalian." }
+        ];
+
+        // Latihan Soal Data (20 Soal)
+        const latihanSoalData = Array.from({length: 20}, (_, i) => ({
+            id: i + 1,
+            pertanyaan: `Pertanyaan latihan ${i+1}: Apakah hukum melaksanakan sholat lima waktu bagi setiap Muslim yang mukallaf?`,
+            opsi: ["A. Sunnah muakkad", "B. Fardhu ain / Wajib", "C. Fardhu kifayah", "D. Mubah"],
+            kunci: 1, // Indeks 1 (B)
+            penjelasan: "Sholat lima waktu adalah rukun Islam kedua dan hukumnya wajib (fardhu 'ain) bagi setiap muslim yang baligh dan berakal."
+        }));
+
+        // Kuis Interaktif Data (20 Soal Pilihan Ganda)
+        const kuisData = [
+            { q: "Sholat fardhu yang dikerjakan pada waktu fajar sebelum terbit matahari adalah sholat...", options: ["A. Zuhur", "B. Asar", "C. Subuh", "D. Isya"], answer: 2, explanation: "Sholat Subuh dikerjakan pada waktu fajar sebelum terbit matahari dengan jumlah 2 rakaat." },
+            { q: "Jumlah rakaat pada sholat Magrib adalah...", options: ["A. 2 rakaat", "B. 3 rakaat", "C. 4 rakaat", "D. 4 rakaat", "D. 1 rakaat"], answer: 1, explanation: "Sholat Magrib dikerjakan sebanyak 3 rakaat." },
+            { q: "Syarat wajib sholat meliputi hal-hal berikut, KECUALI...", options: ["A. Islam", "B. Baligh", "C. Berakal", "D. Kaya raya"], answer: 3, explanation: "Kaya raya bukan syarat wajib sholat. Syarat wajib adalah Islam, Baligh, dan Berakal sehat." },
+            { q: "Gerakan membungkuk dengan punggung rata dan kepala lurus sejajar disebut...", options: ["A. Sujud", "B. Rukuk", "C. I'tidal", "D. Tasyahud"], answer: 1, explanation: "Rukuk adalah gerakan membungkuk dengan punggung lurus dan thumakninah." },
+            { q: "Bacaan yang dibaca setelah takbiratul ihram adalah...", options: ["A. Doa Iftitah", "B. Surah Al-Fatihah", "C. Tahiyyat akhir", "D. Qunut"], answer: 0, explanation: "Doa Iftitah dibaca setelah takbiratul ihram pada rakaat pertama." },
+            { q: "Mana di antara hal berikut yang dapat membatalkan sholat?", options: ["A. Menangis karena takut kepada Allah", "B. Tersenyum", "C. Tertawa terbahak-bahak", "D. Mengantuk"], answer: 2, explanation: "Tertawa terbahak-bahak yang mengeluarkan suara membatalkan sholat." },
+            { q: "Batas waktu sholat Zuhur berakhir ketika...", options: ["A. Terbenam matahari", "B. Masuk waktu Asar", "C. Terbit fajar", "D. Tengah malam"], answer: 1, explanation: "Waktu Zuhur berakhir ketika bayangan suatu benda sama panjangnya dengan benda tersebut dan masuk waktu Asar." },
+            { q: "Membaca surah Al-Fatihah dalam sholat hukumnya adalah...", options: ["A. Sunnah", "B. Makruh", "C. Rukun", "D. Mubah"], answer: 2, explanation: "Al-Fatihah adalah salah satu rukun sholat yang wajib dibaca pada setiap rakaat." },
+            { q: "Duduk di antara dua sujud dilakukan dengan cara...", options: ["A. Iftirasy (duduk di atas telapak kaki kiri)", "B. Tawarruk", "C. Bersila", "D. Berdiri"], answer: 0, explanation: "Duduk di antara dua sujud menggunakan duduk iftirasy." },
+            { q: "Salam dalam sholat diucapkan sebanyak berapa kali ke arah kanan dan kiri?", options: ["A. 1 kali ke kanan", "B. 2 kali (ke kanan lalu ke kiri)", "C. 3 kali", "D. Tidak tentu"], answer: 1, explanation: "Salam diucapkan dua kali, menoleh ke kanan kemudian ke kiri." },
+            { q: "Perintah sholat lima waktu diturunkan Allah SWT ketika peristiwa...", options: ["A. Perang Badar", "B. Isra' Mi'raj", "C. Hijrah ke Madinah", "D. Fathu Makkah"], answer: 1, explanation: "Perintah sholat lima waktu diterima Nabi Muhammad SAW saat peristiwa Isra' Mi'raj." },
+            { q: "Sholat fardhu yang dikerjakan 4 rakaat pada siang hari menjelang sore adalah...", options: ["A. Zuhur", "B. Asar", "C. Magrib", "D. Isya"], answer: 1, explanation: "Sholat Asar dikerjakan 4 rakaat pada sore hari." },
+            { q: "Mengangkat kedua tangan sejajar dengan telinga atau pundak dilakukan pada saat...", options: ["A. Rukuk", "B. Sujud", "C. Takbiratul Ihram", "D. Salam"], answer: 2, explanation: "Takbiratul ihram disertai mengangkat tangan sejajar telinga/pundak." },
+            { q: "Thumakninah artinya adalah...", options: ["A. Cepat dan terburu-buru", "B. Tenang sejenak di setiap gerakan", "C. Sambil duduk", "D. Membaca dengan suara keras"], answer: 1, explanation: "Thumakninah adalah ketenangan sejenak setelah anggota badan berada pada posisi tetap dalam gerakan sholat." },
+            { q: "Waktu sholat Isya dimulai dari...", options: ["A. Terbenamnya matahari", "B. Hilangnya mega merah (syafaq)", "C. Tengah malam", "D. Terbit fajar"], answer: 1, explanation: "Waktu Isya dimulai ketika mega merah di ufuk barat telah hilang." },
+            { q: "Baju terkena kotoran najis berat saat sholat tanpa disadari. Sahkah sholatnya?", options: ["A. Sah", "B. Tidak sah", "C. Makruh", "D. Wajib diulang"], answer: 1, explanation: "Syarat sah sholat adalah suci dari najis pada badan, pakaian, dan tempat." },
+            { q: "Jumlah rakaat sholat Isya adalah...", options: ["A. 2 rakaat", "B. 3 rakaat", "C. 4 rakaat", "D. 1 rakaat"], answer: 2, explanation: "Sholat Isya dikerjakan sebanyak 4 rakaat." },
+            { q: "Doa yang dibaca ketika duduk di antara dua sujud berisi permohonan...", options: ["A. Ampunan dan rahmat", "B. Kekayaan dunia", "C. Keturunan banyak", "D. Kemenangan perang"], answer: 0, explanation: "Berisi ampunan (rabbighfirlii), rahmat (warhamnii), kecukupan, dan petunjuk." },
+            { q: "Shalat adalah tiang agama. Barangsiapa mendirikannya, maka ia...", options: ["A. Menegakkan agama", "B. Merobohkan agama", "C. Mencari dunia", "D. Berbuat dosa"], answer: 0, explanation: "Hadis menyatakan shalat adalah tiang agama." },
+            { q: "Urutan gerakan setelah rukuk adalah...", options: ["A. Sujud", "B. I'tidal", "C. Duduk tahiyyat", "D. Salam"], answer: 1, explanation: "Setelah rukuk adalah bangkit berdiri tegak (i'tidal)." }
+        ];
+
+        // Benar atau Salah Data (10 Pernyataan)
+        const trueFalseData = [
+            { id: 1, text: "Sholat Subuh dikerjakan sebanyak 4 rakaat.", answer: false, explanation: "Sholat Subuh dikerjakan sebanyak 2 rakaat." },
+            { id: 2, text: "Menghadap kiblat adalah salah satu syarat sah sholat.", answer: true, explanation: "Menghadap kiblat merupakan syarat sah mutlak sholat fardhu." },
+            { id: 3, text: "Berbicara dengan sengaja saat sholat tidak membatalkan sholat.", answer: false, explanation: "Berbicara dengan sengaja membatalkan sholat." },
+            { id: 4, text: "Membaca surah Al-Fatihah hukumnya wajib dalam setiap rakaat sholat.", answer: true, explanation: "Al-Fatihah adalah rukun fi'li/qauli yang wajib dibaca di setiap rakaat." },
+            { id: 5, text: "Waktu sholat Magrib dimulai dari terbenamnya matahari.", answer: true, explanation: "Magrib dimulai tepat saat matahari terbenam." },
+            { id: 6, text: "Anak yang belum baligh tetap wajib melaksanakan sholat lima waktu.", answer: false, explanation: "Kewajiban sholat berlaku bagi anak yang sudah baligh dan berakal." },
+            { id: 7, text: "Sujud dilakukan sebanyak dua kali dalam setiap rakaat sholat.", answer: true, explanation: "Setiap rakaat memiliki dua kali gerakan sujud." },
+            { id: 8, text: "Tertawa terbahak-bahak saat sholat membuat sholat menjadi lebih khusyuk.", answer: false, explanation: "Tertawa terbahak-bahak membatalkan sholat." },
+            { id: 9, text: "Niat sholat dilafalkan di dalam hati dan boleh dilafalkan di lisan untuk membantu.", answer: true, explanation: "Tempat niat adalah di hati, melafalkan membantu kekhusyukan." },
+            { id: 10, text: "Salam adalah penutup rangkaian gerakan sholat.", answer: true, explanation: "Sholat ditutup dengan salam ke kanan dan ke kiri." }
+        ];
+
+        // Menjodohkan Data
+        const matchingData = {
+            sholat: [
+                { item: "Subuh", match: "2 Rakaat" },
+                { item: "Zuhur", match: "4 Rakaat" },
+                { item: "Magrib", match: "3 Rakaat" },
+                { item: "Isya", match: "4 Rakaat" }
+            ]
+        };
+
+        // Susun Urutan Data
+        const sequenceData = [
+            { id: 1, text: "Takbiratul Ihram" },
+            { id: 2, text: "Membaca Doa Iftitah" },
+            { id: 3, text: "Membaca Surah Al-Fatihah" },
+            { id: 4, text: "Rukuk dengan Thumakninah" },
+            { id: 5, text: "I'tidal" },
+            { id: 6, text: "Sujud Dua Kali" },
+            { id: 7, text: "Salam" }
+        ];
+
+        // Init App on Load
+        window.onload = function() {
+            renderNavigation();
+            loadSection(0);
+            updateProgress();
+            
+            // Check dark mode
+            if (localStorage.getItem('theme') === 'dark') {
+                document.documentElement.classList.add('dark');
+            }
+        };
+
+        function toggleDarkMode() {
+            const html = document.documentElement;
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        function toggleAudio() {
+            audioEnabled = !audioEnabled;
+            const btn = document.getElementById('audioMuteBtn');
+            if (audioEnabled) {
+                btn.innerHTML = '<i class="fa-solid fa-volume-high"></i>';
+                showModal("Audio", "Audio diaktifkan.");
+            } else {
+                btn.innerHTML = '<i class="fa-solid fa-volume-xmark"></i>';
+                showModal("Audio", "Audio dimatikan (Mute).");
+            }
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        function openGoogleDocs() {
+            window.open(GOOGLE_DOCS_URL, '_blank');
+        }
+
+        function renderNavigation() {
+            const navContainer = document.getElementById('navigationMenuList');
+            navContainer.innerHTML = '';
+            menuItems.forEach((item, index) => {
+                const isActive = index === currentSectionIndex;
+                const isVisited = visitedSections.has(index);
+                
+                const btn = document.createElement('button');
+                btn.className = `w-full text-left px-3 py-2.5 rounded-xl text-xs sm:text-sm font-medium transition flex items-center justify-between group ${
+                    isActive 
+                        ? 'bg-islamic-600 text-white shadow-sm' 
+                        : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700/60'
+                }`;
+                btn.onclick = () => loadSection(index);
+                
+                btn.innerHTML = `
+                    <div class="flex items-center space-x-3 truncate">
+                        <i class="fa-solid ${item.icon} w-5 text-center ${isActive ? 'text-white' : 'text-islamic-600 dark:text-islamic-400'}"></i>
+                        <span class="truncate">${index + 1}. ${item.title}</span>
+                    </div>
+                    ${isVisited && !isActive ? '<i class="fa-solid fa-circle-check text-emerald-500 text-xs"></i>' : ''}
+                `;
+                navContainer.appendChild(btn);
+            });
+        }
+
+        function loadSection(index) {
+            if (index < 0 || index >= menuItems.length) return;
+            currentSectionIndex = index;
+            visitedSections.add(index);
+            renderNavigation();
+            updateProgress();
+
+            const container = document.getElementById('appContainer');
+            document.getElementById('pageIndicator').innerText = `${index + 1} / ${menuItems.length}`;
+            
+            // Render specific views based on index
+            switch(index) {
+                case 0: renderBeranda(container); break;
+                case 1: renderTujuan(container); break;
+                case 2: renderMateriUtama(container); break;
+                case 3: renderPengertian(container); break;
+                case 4: renderDalil(container); break;
+                case 5: renderMacamSholat(container); break;
+                case 6: renderWaktuSholat(container); break;
+                case 7: renderSyaratWajib(container); break;
+                case 8: renderSyaratSah(container); break;
+                case 9: renderRukunSholat(container); break;
+                case 10: renderSunnahSholat(container); break;
+                case 11: renderPembatalSholat(container); break;
+                case 12: renderTataCara(container); break;
+                case 13: renderBacaanDoa(container); break;
+                case 14: renderTutorialVideo(container); break;
+                case 15: renderLatihanSoal(container); break;
+                case 16: renderKuisInteraktif(container); break;
+                case 17: renderEvaluasi(container); break;
+                case 18: renderNilaiSaya(container); break;
+                case 19: renderRefleksi(container); break;
+                case 20: renderSumberBelajar(container); break;
+            }
+            
+            // Scroll to top of container
+            container.scrollTop = 0;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function nextSection() {
+            if (currentSectionIndex < menuItems.length - 1) {
+                loadSection(currentSectionIndex + 1);
+            }
+        }
+
+        function prevSection() {
+            if (currentSectionIndex > 0) {
+                loadSection(currentSectionIndex - 1);
+            }
+        }
+
+        function resetCurrentSection() {
+            loadSection(currentSectionIndex);
+            showModal("Reset", "Bagian ini telah dimuat ulang.");
+        }
+
+        function updateProgress() {
+            const percent = Math.round((visitedSections.size / menuItems.length) * 100);
+            document.getElementById('overallProgressBar').style.width = `${percent}%`;
+            document.getElementById('overallProgressText').innerText = `${percent}% Selesai`;
+        }
+
+        function renderBeranda(container) {
+            container.innerHTML = `
+                <div class="text-center space-y-6 py-6">
+                    <div class="inline-flex w-24 h-24 rounded-3xl bg-islamic-100 dark:bg-islamic-900/40 text-islamic-600 dark:text-islamic-400 items-center justify-center text-4xl shadow-inner mb-2">
+                        <i class="fa-solid fa-kaaba"></i>
+                    </div>
+                    <div class="space-y-2">
+                        <span class="px-3 py-1 bg-islamic-50 dark:bg-islamic-900/40 text-islamic-700 dark:text-islamic-300 text-xs font-semibold rounded-full border border-islamic-200 dark:border-islamic-800">
+                            ASSALAMUALAIKUM WR. WB.
+                        </span>
+                        <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-800 dark:text-slate-100">
+                            SELAMAT DATANG DI MEDIA PEMBELAJARAN PAI
+                        </h2>
+                        <h3 class="text-xl sm:text-2xl font-bold text-islamic-600 dark:text-islamic-400">
+                            "SHOLAT LIMA WAKTU" - KELAS 7 SMP
+                        </h3>
+                        <p class="text-slate-600 dark:text-slate-400 max-w-xl mx-auto text-sm sm:text-base pt-2">
+                            Belajar, Memahami, Menghafal, dan Mempraktikkan Sholat dengan cara yang menyenangkan, interaktif, dan mudah dipahami.
+                        </p>
+                    </div>
+
+                    <div class="pt-4 flex flex-wrap justify-center gap-4">
+                        <button onclick="loadSection(2)" class="px-6 py-3.5 bg-islamic-600 hover:bg-islamic-700 text-white font-bold rounded-2xl shadow-lg shadow-islamic-600/30 transition flex items-center gap-3 text-base">
+                            <i class="fa-solid fa-play"></i> MULAI BELAJAR
+                        </button>
+                        <button onclick="openGoogleDocs()" class="px-6 py-3.5 bg-emerald-50 dark:bg-emerald-900/30 hover:bg-emerald-100 text-emerald-700 dark:text-emerald-300 font-bold rounded-2xl border border-emerald-300 dark:border-emerald-700 transition flex items-center gap-3 text-base">
+                            <i class="fa-solid fa-book-bookmark"></i> BUKA MATERI GOOGLE DOCS
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-8 text-left">
+                        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-700/50 border border-slate-100 dark:border-slate-700">
+                            <div class="text-islamic-600 dark:text-islamic-400 text-xl mb-2"><i class="fa-solid fa-book-open-reader"></i></div>
+                            <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm">Materi Lengkap</h4>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Sesuai kurikulum PAI Kelas 7 SMP terbaru.</p>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-700/50 border border-slate-100 dark:border-slate-700">
+                            <div class="text-islamic-600 dark:text-islamic-400 text-xl mb-2"><i class="fa-solid fa-puzzle-piece"></i></div>
+                            <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm">Kuis & Latihan</h4>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Uji pemahaman dengan soal interaktif & skor otomatis.</p>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-700/50 border border-slate-100 dark:border-slate-700">
+                            <div class="text-islamic-600 dark:text-islamic-400 text-xl mb-2"><i class="fa-solid fa-mobile-screen"></i></div>
+                            <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm">Responsif HP & PC</h4>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Nyaman diakses dari smartphone, tablet, maupun laptop.</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderTujuan(container) {
+            container.innerHTML = `
+                <div class="space-y-6">
+                    <div class="border-b border-slate-100 dark:border-slate-700 pb-4">
+                        <span class="text-xs font-bold text-islamic-600 uppercase tracking-wider">Capaian Pembelajaran</span>
+                        <h2 class="text-xl sm:text-2xl font-bold text-slate-800 dark:text-slate-100 mt-1">Tujuan Pembelajaran PAI Kelas 7</h2>
+                    </div>
+                    <div class="space-y-4 text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
+                        <div class="flex items-start gap-3 p-4 rounded-xl bg-islamic-50/60 dark:bg-islamic-900/20 border border-islamic-100 dark:border-islamic-800">
+                            <div class="w-8 h-8 rounded-lg bg-islamic-600 text-white flex items-center justify-center shrink-0 font-bold">1</div>
+                            <div>
+                                <h4 class="font-bold text-slate-800 dark:text-slate-100">Memahami Kewajiban Sholat</h4>
+                                <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-0.5">Siswa mampu menjelaskan pengertian sholat, dalil kewajibannya, serta kedudukan sholat sebagai tiang agama.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3 p-4 rounded-xl bg-islamic-50/60 dark:bg-islamic-900/20 border border-islamic-100 dark:border-islamic-800">
+                            <div class="w-8 h-8 rounded-lg bg-islamic-600 text-white flex items-center justify-center shrink-0 font-bold">2</div>
+                            <div>
+                                <h4 class="font-bold text-slate-800 dark:text-slate-100">Syarat, Rukun, dan Ketentuan Sholat</h4>
+                                <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-0.5">Siswa mampu mengidentifikasi syarat wajib, syarat sah, rukun sholat, sunnah, dan hal-hal yang membatalkan sholat.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3 p-4 rounded-xl bg-islamic-50/60 dark:bg-islamic-900/20 border border-islamic-100 dark:border-islamic-800">
+                            <div class="w-8 h-8 rounded-lg bg-islamic-600 text-white flex items-center justify-center shrink-0 font-bold">3</div>
+                            <div>
+                                <h4 class="font-bold text-slate-800 dark:text-slate-100">Menghafal Bacaan & Tata Cara</h4>
+                                <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-0.5">Siswa mampu menghafal bacaan sholat dengan benar dan mempraktikkan gerakan tata cara sholat lima waktu secara tertib.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3 p-4 rounded-xl bg-islamic-50/60 dark:bg-islamic-900/20 border border-islamic-100 dark:border-islamic-800">
+                            <div class="w-8 h-8 rounded-lg bg-islamic-600 text-white flex items-center justify-center shrink-0 font-bold">4</div>
+                            <div>
+                                <h4 class="font-bold text-slate-800 dark:text-slate-100">Membiasakan Kedisiplinan</h4>
+                                <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-0.5">Siswa memiliki kesadaran tinggi untuk menegakkan sholat lima waktu secara disiplin dalam kehidupan sehari-hari.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderMateriUtama(container) {
+            container.innerHTML = `
+                <div class="space-y-6">
+                    <div class="border-b border-slate-100 dark:border-slate-700 pb-4">
+                        <span class="text-xs font-bold text-islamic-600 uppercase tracking-wider">Daftar Modul</span>
+                        <h2 class="text-xl sm:text-2xl font-bold text-slate-800 dark:text-slate-100 mt-1">Peta Materi Pembelajaran</h2>
+                    </div>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">Pilih topik materi di bawah ini untuk mulai mempelajari bab Sholat Lima Waktu:</p>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        ${menuItems.slice(3, 15).map((item, idx) => `
+                            <div onclick="loadSection(${idx + 3})" class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-700/50 hover:bg-islamic-50 dark:hover:bg-islamic-900/30 border border-slate-200 dark:border-slate-700 hover:border-islamic-300 transition cursor-pointer flex items-center gap-4 group">
+                                <div class="w-12 h-12 rounded-xl bg-islamic-100 dark:bg-islamic-900/50 text-islamic-600 dark:text-islamic-400 flex items-center justify-center text-lg group-hover:scale-110 transition">
+                                    <i class="fa-solid ${item.icon}"></i>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm truncate">${item.title}</h4>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Modul ${idx + 1}</p>
+                                </div>
+                                <i class="fa-solid fa-chevron-right text-slate-400 text-xs"></i>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderPengertian(container) {
+            container.innerHTML = `
+                <div class="space-y-6">
+                    <div class="border-b border-slate-100 dark:border-slate-700 pb-4">
+                        <span class="text-xs font-bold text-islamic-600 uppercase tracking-wider">A. Pengertian</span>
+                        <h2 class="text-xl sm:text-2xl font-bold text-slate-800 dark:text-slate-100 mt-1">Apa Itu Sholat?</h2>
+                    </div>
+                    
+                    <div class="p-6 rounded-2xl bg-islamic-50/70 dark:bg-islamic-900/20 border border-islamic-100 dark:border-islamic-800 space-y-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-islamic-600 text-white flex items-center justify-center">
+                                <i class="fa-solid fa-book-quran text-lg"></i>
+                            </div>
+                            <h3 class="font-bold text-lg text-slate-800 dark:text-slate-100">Pengertian Bahasa & Istilah</h3>
+                        </div>
+                        <p class="text-slate-700 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
+                            Secara <strong>bahasa (etimologi)</strong>, sholat berarti <strong>doa</strong> atau memohon kebaikan.
+                        </p>
+                        <p class="text-slate-700 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
+                            Secara <strong>istilah (terminologi syariat)</strong>, sholat adalah serangkaian kegiatan ibadah khusus yang dimulai dengan ucapan <strong>Takbiratul Ihram</strong> dan diakhiri dengan <strong>salam</strong>, serta dilaksanakan sesuai dengan syarat dan rukun yang telah ditentukan oleh syariat Islam.
+                        </p>
+                    </div>
+
+                    <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-700 space-y-2">
+                        <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm flex items-center gap-2">
+                            <i class="fa-solid fa-lightbulb text-amber-500"></i> Kedudukan Sholat dalam Islam
+                        </h4>
+                        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Sholat adalah rukun Islam kedua setelah dua kalimat syahadat. Sholat diibaratkan sebagai <strong>tiang agama</strong>. Barangsiapa yang mendirikan sholat, maka ia telah menegakkan agamanya. Sebaliknya, barangsiapa yang meninggalkan sholat, maka ia telah merobohkan agamanya.
+                        </p>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderDalil(container) {
+            container.innerHTML = `
+                <div class="space-y-6">
+                    <div class="border-b border-slate-100 dark:border-slate-700 pb-4">
+                        <span class="text-xs font-bold text-islamic-600 uppercase tracking-wider">B. Dalil Al-Qur'an</span>
+                        <h2 class="text-xl sm:text-2xl font-bold text-slate-800 dark:text-slate-100 mt-1">Perintah Kewajiban Sholat</h2>
+                    </div>
+
+                    <div class="p-6 rounded-2xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-700 space-y-6">
+                        <div class="flex items-center justify-between">
+                            <span class="px-3 py-1 bg-islamic-100 dark:bg-islamic-900/60 text-islamic-800 dark:text-islamic-300 text-xs font-bold rounded-full">
+                                Q.S. Al-Baqarah / 2: Ayat 43
+                            </span>
+                            <span class="text-xs text-slate-400">Dalil Kewajiban Sholat</span>
+                        </div>
+
+                        <div class="text-center py-4 px-2 bg-white dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm">
+                            <p class="font-arabic text-2xl sm:text-3xl text-slate-800 dark:text-slate-100 leading-loose">
+                                وَأَقِيمُوا الصَّلَاةَ وَآتُوا الزَّكَاةَ وَرَكَعُوا مَعَ الرَّاكِعِينَ
+                            </p>
+                        </div>
+
+                        <div class="space-y-2">
+                            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">Terjemahan Bahasa Indonesia</h4>
+                            <p class="text-sm sm:text-base text-slate-700 dark:text-slate-300 italic font-medium">
+                                "Dan dirikanlah sholat, tunaikanlah zakat, dan rukuklah beserta orang-orang yang rukuk." (Q.S. Al-Baqarah: 43)
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderMacamSholat(container) {
+            container.innerHTML = `
+                <div class="space-y-6">
+                    <div class="border-b border-slate-100 dark:border-slate-700 pb-4">
+                        <span class="text-xs font-bold text-islamic-600 uppercase tracking-wider">C. Sholat Lima Waktu</span>
+                        <h2 class="text-xl sm:text-2xl font-bold text-slate-800 dark:text-slate-100 mt-1">Tabel Sholat Fardhu</h2>
+                    </div>
+
+                    <p class="text-sm text-slate-600 dark:text-slate-400">Berikut adalah daftar sholat fardhu yang wajib dikerjakan oleh setiap Muslim setiap hari:</p>
+
+                    <div class="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                        <table class="w-full text-left border-collapse text-sm sm:text-base">
+                            <thead>
+                                <tr class="bg-islamic-600 text-white">
+                                    <th class="p-3 sm:p-4 font-bold">Nama Sholat</th>
+                                    <th class="p-3 sm:p-4 font-bold">Jumlah Rakaat</th>
+                                    <th class="p-3 sm:p-4 font-bold">Waktu Pelaksanaan</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200 dark:divide-slate-700 bg-white dark:bg-slate-800">
+                                <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50">
+                                    <td class="p-3 sm:p-4 font-bold text-slate-800 dark:text-slate-100">Subuh</td>
+                                    <td class="p-3 sm:p-4">2 Rakaat</td>
+                                    <td class="p-3 sm:p-4 text-slate-600 dark:text-slate-300">Dari terbit fajar shadiq hingga terbit matahari</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50">
+                                    <td class="p-3 sm:p-4 font-bold text-slate-800 dark:text-slate-100">Zuhur</td>
+                                    <td class="p-3 sm:p-4">4 Rakaat</td>
+                                    <td class="p-3 sm:p-4 text-slate-600 dark:text-slate-300">Dari tergelincirnya matahari hingga bayangan benda sama panjang</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50">
+                                    <td class="p-3 sm:p-4 font-bold text-slate-800 dark:text-slate-100">Asar</td>
+                                    <td class="p-3 sm:p-4">4 Rakaat</td>
+                                    <td class="p-3 sm:p-4 text-slate-600 dark:text-slate-300">Dari setelah bayangan melebihi benda hingga terbenam matahari</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50">
+                                    <td class="p-3 sm:p-4 font-bold text-slate-800 dark:text-slate-100">Magrib</td>
+                                    <td class="p-3 sm:p-4">3 Rakaat</td>
+                                    <td class="p-3 sm:p-4 text-slate-600 dark:text-slate-300">Dari terbenam matahari hingga hilangnya mega merah</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50">
+                                    <td class="p-3 sm:p-4 font-bold text-slate-800 dark:text-slate-100">Isya</td>
+                                    <td class="p-3 sm:p-4">4 Rakaat</td>
+                                    <td class="p-3 sm:p-4 text-slate-600 dark:text-slate-300">Dari hilangnya mega merah hingga terbit fajar esok hari</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderWaktuSholat(container) {
+            container.innerHTML = `
+                <div class="space-y-6">
+                    <div class="border-b border-slate-100 dark:border-slate-700 pb-4">
+                        <span class="text-xs font-bold text-islamic-600 uppercase tracking-wider">D. Waktu Sholat</span>
+                        <h2 class="text-xl sm:text-2xl font-bold text-slate-800 dark:text-slate-100 mt-1">Penjelasan Waktu Sholat Lima Waktu</h2>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-700">
+                            <h4 class="font-bold text-islamic-600 dark:text-islamic-400 mb-1">1. Subuh (2 Rakaat)</h4>
+                            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300">Dimulai sejak terbit fajar shadiq (cahaya putih melintang diufuk timur) sampai matahari terbit.</p>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-700">
+                            <h4 class="font-bold text-islamic-600 dark:text-islamic-400 mb-1">2. Zuhur (4 Rakaat)</h4>
+                            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300">Dimulai ketika matahari telah condong ke barat (zawal) sampai bayangan benda sama panjang dengan bendanya.</p>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-700">
+                            <h4 class="font-bold text-islamic-600 dark:text-islamic-400 mb-1">3. Asar (4 Rakaat)</h4>
+                            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300">Dimulai ketika panjang bayangan suatu benda melebihi panjang benda itu sendiri sampai matahari terbenam.</p>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-700">
+                            <h4 class="font-bold text-islamic-600 dark:text-islamic-400 mb-1">4. Magrib (3 Rakaat)</h4>
+                            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300">Dimulai saat matahari terbenam sepenuhnya sampai hilangnya mega merah di ufuk barat.</p>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-700 sm:col-span-2">
+                            <h4 class="font-bold text-islamic-600 dark:text-islamic-400 mb-1">5. Isya (4 Rakaat)</h4>
+                            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300">Dimulai sejak hilangnya mega merah di ufuk barat sampai terbitnya fajar shadiq keesokan harinya.</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderSyaratWajib(container) {
+            container.innerHTML = `
+                <div class="space-y-6">
+                    <div class="border-b border-slate-100 dark:border-slate-700 pb-4">
+                        <span class="text-xs font-bold text-islamic-600 uppercase tracking-wider">E. Syarat Wajib</span>
+                        <h2 class="text-xl sm:text-2xl font-bold text-slate-800 dark:text-slate-100 mt-1">Syarat Wajib Sholat</h2>
+                    </div>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">Syarat wajib adalah hal-hal yang menyebabkan seseorang diwajibkan untuk melaksanakan sholat:</p>
+                    <div class="space-y-3">
+                        <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-700 flex items-start gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-islamic-100 dark:bg-islamic-900 text-islamic-600 flex items-center justify-center font-bold shrink-0">1</div>
+                            <div>
+                                <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm">Beragama Islam</h4>
+                                <p class="text-xs text-slate-600 dark:text-slate-400 mt-0.5">Sholat hanya diwajibkan bagi pemeluk agama Islam.</p>
+                            </div>
+                        </div>
+                        <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-700 flex items-start gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-islamic-100 dark:bg-islamic-900 text-islamic-600 flex items-center justify-center font-bold shrink-0">2</div>
+                            <div>
+                                <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm">Baligh (Dewasa)</h4>
+                                <p class="text-xs text-slate-600 dark:text-slate-400 mt-0.5">Telah mencapai usia dewasa secara biologis dan syariat.</p>
+                            </div>
+                        </div>
+                        <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-700 flex items-start gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-islamic-100 dark:bg-islamic-900 text-islamic-600 flex items-center justify-center font-bold shrink-0">3</div>
+                            <div>
+                                <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm">Berakal Sehat</h4>
+                                <p class="text-xs text-slate-600 dark:text-slate-400 mt-0.5">Tidak gila atau hilang akal (orang yang tidak sadar tidak wajib sholat).</p>
+                            </div>
+                        </div>
+                        <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-700 flex items-start gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-islamic-100 dark:bg-islamic-900 text-islamic-600 flex items-center justify-center font-bold shrink-0">4</div>
+                            <div>
+                                <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm">Suci dari Haid dan Nifas (Bagi Perempuan)</h4>
+                                <p class="text-xs text-slate-600 dark:text-slate-400 mt-0.5">Perempuan yang sedang haid atau nifas tidak wajib dan tidak sah melakukan sholat.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderSyaratSah(container) {
+            container.innerHTML = `
+                <div class="space-y-6">
+                    <div class="border-b border-slate-100 dark:border-slate-700 pb-4">
+                        <span class="text-xs font-bold text-islamic-600 uppercase tracking-wider">F. Syarat Sah</span>
+                        <h2 class="text-xl sm:text-2xl font-bold text-slate-800 dark:text-slate-100 mt-1">Syarat Sah Sholat</h2>
+                    </div>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">Syarat sah adalah ketentuan yang harus dipenuhi sebelum sholat dimulai agar sholatnya sah di sisi Allah:</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-700">
+                            <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm mb-1">1. Suci dari Hadast & Najis</h4>
+                            <p class="text-xs text-slate-600 dark:text-slate-300">Suci badan, pakaian, dan tempat sholat dari najis, serta berwudhu dari hadast kecil.</p>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-700">
+                            <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm mb-1">2. Menutup Aurat</h4>
+                            <p class="text-xs text-slate-600 dark:text-slate-300">Laki-laki menutup antara pusar hingga lutut, perempuan menutup seluruh tubuh kecuali wajah dan telapak tangan.</p>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-700">
+                            <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm mb-1">3. Menghadap Kiblat</h4>
+                            <p class="text-xs text-slate-600 dark:text-slate-300">Menghadap ke arah Ka'bah di Makkah.</p>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-700">
+                            <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm mb-1">4. Masuk Waktu Sholat</h4>
+                            <p class="text-xs text-slate-600 dark:text-slate-300">Sholat tidak sah jika dikerjakan sebelum waktunya tiba.</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderRukunSholat(container) {
+            container.innerHTML = `
+                <div class="space-y-6">
+                    <div class="border-b border-slate-100 dark:border-slate-700 pb-4">
+                        <span class="text-xs font-bold text-islamic-600 uppercase tracking-wider">G. Rukun Sholat</span>
+                        <h2 class="text-xl sm:text-2xl font-bold text-slate-800 dark:text-slate-100 mt-1">12 Rukun Sholat (Klik Setiap Rukun)</h2>
+                    </div>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">Klik kartu rukun di bawah ini untuk melihat penjelasan detailnya:</p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="rukunCardsContainer">
+                        ${rukunSholatData.map(r => `
+                            <div onclick="toggleRukunCard(${r.no})" class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-700 cursor-pointer hover:border-islamic-500 transition">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-3">
+                                        <span class="w-8 h-8 rounded-xl bg-islamic-600 text-white font-bold text-xs flex items-center justify-center">${r.no}</span>
+                                        <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm">${r.title}</h4>
+                                    </div>
+                                    <i class="fa-solid fa-chevron-down text-xs text-slate-400" id="rukun_icon_${r.no}"></i>
+                                </div>
+                                <p id="rukun_desc_${r.no}" class="hidden text-xs text-slate-600 dark:text-slate-300 mt-3 pt-3 border-t border-slate-200 dark:border-slate-600 leading-relaxed">${r.desc}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        function toggleRukunCard(no) {
+            const desc = document.getElementById(`rukun_desc_${no}`);
+            const icon = document.getElementById(`rukun_icon_${no}`);
+            if (desc.classList.contains('hidden')) {
+                desc.classList.remove('hidden');
+                icon.classList.remove('fa-chevron-down');
+                icon.classList.add('fa-chevron-up');
+            } else {
+                desc.classList.add('hidden');
+                icon.classList.remove('fa-chevron-up');
+                icon.classList.add('fa-chevron-down');
+            }
+        }
+
+        function renderSunnahSholat(container) {
+            container.innerHTML = `
+                <div class="space-y-6">
+                    <div class="border-b border-slate-100 dark:border-slate-700 pb-4">
+                        <span class="text-xs font-bold text-islamic-600 uppercase tracking-wider">H. Sunnah Sholat</span>
+                        <h2 class="text-xl sm:text-2xl font-bold text-slate-800 dark:text-slate-100 mt-1">Sunnah-Sunnah dalam Sholat</h2>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-700">
+                            <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm">1. Mengangkat Kedua Tangan</h4>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 mt-1">Dilakukan saat takbiratul ihram, ketika hendak rukuk, dan ketika bangkit dari rukuk (i'tidal).</p>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-700">
+                            <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm">2. Meletakkan Tangan di Atas Dada</h4>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 mt-1">Tangan kanan diletakkan di atas punggung tangan kiri di dada saat berdiri membaca bacaan sholat.</p>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-700">
+                            <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm">3. Membaca Doa Iftitah</h4>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 mt-1">Dibaca sunnah setelah takbiratul ihram sebelum membaca surah Al-Fatihah.</p>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-700">
+                            <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm">4. Membaca Surah Pendek setelah Al-Fatihah</h4>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 mt-1">Dilakukan pada rakaat pertama dan kedua sholat fardhu.</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderPembatalSholat(container) {
+            container.innerHTML = `
+                <div class="space-y-6">
+                    <div class="border-b border-slate-100 dark:border-slate-700 pb-4">
+                        <span class="text-xs font-bold text-islamic-600 uppercase tracking-wider">I. Hal Pembatal</span>
+                        <h2 class="text-xl sm:text-2xl font-bold text-slate-800 dark:text-slate-100 mt-1">Hal-Hal yang Membatalkan Sholat</h2>
+                    </div>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">Klik kartu di bawah untuk melihat penjelasan detail setiap pembatal sholat:</p>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        ${pembatalSholatData.map((p, idx) => `
+                            <div onclick="togglePembatal(${idx})" class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-700 cursor-pointer hover:border-amber-500 transition">
+                                <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm flex items-center justify-between">
+                                    <span><i class="fa-solid fa-triangle-exclamation text-amber-500 mr-2"></i> ${p.title}</span>
+                                    <i class="fa-solid fa-chevron-down text-xs text-slate-400" id="pembatal_icon_${idx}"></i>
+                                </h4>
+                                <p id="pembatal_desc_${idx}" class="hidden text-xs text-slate-600 dark:text-slate-300 mt-3 pt-3 border-t border-slate-200 dark:border-slate-600 leading-relaxed">${p.desc}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        function togglePembatal(idx) {
+            const desc = document.getElementById(`pembatal_desc_${idx}`);
+            const icon = document.getElementById(`pembatal_icon_${idx}`);
+            if (desc.classList.contains('hidden')) {
+                desc.classList.remove('hidden');
+                icon.classList.remove('fa-chevron-down');
+                icon.classList.add('fa-chevron-up');
+            } else {
+                desc.classList.add('hidden');
+                icon.classList.remove('fa-chevron-up');
+                icon.classList.add('fa-chevron-down');
+            }
+        }
+
+        function renderTataCara(container) {
+            container.innerHTML = `
+                <div class="space-y-6">
+                    <div class="border-b border-slate-100 dark:border-slate-700 pb-4">
+                        <span class="text-xs font-bold text-islamic-600 uppercase tracking-wider">J. Tata Cara</span>
+                        <h2 class="text-xl sm:text-2xl font-bold text-slate-800 dark:text-slate-100 mt-1">Panduan Langkah Demi Langkah</h2>
+                    </div>
+                    
+                    <div class="p-6 rounded-2xl bg-islamic-50/70 dark:bg-islamic-900/20 border border-islamic-100 dark:border-islamic-800 space-y-4 text-center">
+                        <div id="tataCaraStepBadge" class="inline-block px-3 py-1 bg-islamic-600 text-white font-bold text-xs rounded-full">Langkah 1 dari 13</div>
+                        <h3 id="tataCaraTitle" class="text-xl font-bold text-slate-800 dark:text-slate-100">1. Niat Sholat</h3>
+                        <p id="tataCaraDesc" class="text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-lg mx-auto">
+                            Menghadirkan niat di dalam hati untuk melaksanakan sholat fardhu tertentu (misal: Subuh, Zuhur, Asar, Magrib, atau Isya) dengan ikhlas karena Allah Ta'ala.
+                        </p>
+                    </div>
+
+                    <div class="flex items-center justify-center gap-3 pt-2">
+                        <button onclick="prevTataCara()" class="px-4 py-2 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-bold rounded-xl hover:bg-slate-200 transition">
+                            <i class="fa-solid fa-arrow-left"></i> SEBELUMNYA
+                        </button>
+                        <button onclick="resetTataCara()" class="px-3 py-2 bg-amber-50 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 text-xs font-bold rounded-xl">
+                            ULANGI
+                        </button>
+                        <button onclick="nextTataCara()" class="px-4 py-2 bg-islamic-600 text-white text-xs font-bold rounded-xl hover:bg-islamic-700 transition">
+                            SELANJUTNYA <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        let currentTataCaraIndex = 0;
+        const tataCaraSteps = [
+            { title: "1. Niat Sholat", desc: "Menghadirkan niat di dalam hati untuk melaksanakan sholat fardhu tertentu dengan ikhlas karena Allah Ta'ala." },
+            { title: "2. Takbiratul Ihram", desc: "Mengucapkan 'Allahu Akbar' sambil mengangkat kedua tangan sejajar telinga atau pundak." },
+            { title: "3. Berdiri & Doa Iftitah", desc: "Berdiri tegak, tangan bersidekap di dada, lalu membaca doa Iftitah dengan khusyuk." },
+            { title: "4. Membaca Al-Fatihah", desc: "Membaca surah Al-Fatihah dengan tartil pada setiap rakaat sholat." },
+            { title: "5. Membaca Surah Pendek", desc: "Membaca ayat atau surah pendek Al-Qur'an setelah Al-Fatihah pada rakaat pertama dan kedua." },
+            { title: "6. Rukuk", desc: "Membungkuk dengan punggung lurus dan kepala sejajar, membaca tasbih rukuk tiga kali dengan thumakninah." },
+            { title: "7. I'tidal", desc: "Bangkit tegak dari rukuk sambil membaca 'Sami'allahu liman hamidah, rabbanaa walakal-hamd'." },
+            { title: "8. Sujud Pertama", desc: "Sujud meletakkan tujuh anggota badan ke lantai, membaca tasbih sujud tiga kali." },
+            { title: "9. Duduk di Antara Dua Sujud", desc: "Duduk iftirasy di antara dua sujud sambil membaca doa 'Rabbighfirlii warhamnii...'" },
+            { title: "10. Sujud Kedua", desc: "Melakukan sujud kedua seperti sujud pertama dengan thumakninah." },
+            { title: "11. Berdiri untuk Rakaat Berikutnya", desc: "Bangkit berdiri untuk melanjutkan rakaat selanjutnya atau bersiap tasyahud." },
+            { title: "12. Tasyahud (Tahiyyat Akhir)", desc: "Duduk tasyahud akhir membaca tahiyyat dan shalawat Nabi pada rakaat terakhir." },
+            { title: "13. Salam", desc: "Menoleh ke kanan dan ke kiri mengucapkan 'Assalamu'alaikum warahmatullah' sebagai penutup sholat." }
+        ];
+
+        function nextTataCara() {
+            if (currentTataCaraIndex < tataCaraSteps.length - 1) {
+                currentTataCaraIndex++;
+                updateTataCaraView();
+            }
+        }
+
+        function prevTataCara() {
+            if (currentTataCaraIndex > 0) {
+                currentTataCaraIndex--;
+                updateTataCaraView();
+            }
+        }
+
+        function resetTataCara() {
+            currentTataCaraIndex = 0;
+            updateTataCaraView();
+        }
+
+        function updateTataCaraView() {
+            const step = tataCaraSteps[currentTataCaraIndex];
+            document.getElementById('tataCaraStepBadge').innerText = `Langkah ${currentTataCaraIndex + 1} dari 13`;
+            document.getElementById('tataCaraTitle').innerText = step.title;
+            document.getElementById('tataCaraDesc').innerText = step.desc;
+        }
+
+        function renderBacaanDoa(container) {
+            container.innerHTML = `
+                <div class="space-y-6">
+                    <div class="border-b border-slate-100 dark:border-slate-700 pb-4">
+                        <span class="text-xs font-bold text-islamic-600 uppercase tracking-wider">K. Bacaan & Doa</span>
+                        <h2 class="text-xl sm:text-2xl font-bold text-slate-800 dark:text-slate-100 mt-1">Kumpulan Bacaan dan Doa Sholat</h2>
+                    </div>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">Gunakan tombol <strong>DENGARKAN</strong> untuk memutar audio bacaan (simulasi audio pembacaan).</p>
+
+                    <div class="space-y-4">
+                        ${bacaanDoaData.map((b, idx) => `
+                            <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-700 space-y-3">
+                                <div class="flex items-center justify-between">
+                                    <h4 class="font-bold text-islamic-700 dark:text-islamic-400 text-sm sm:text-base">${idx + 1}. ${b.name}</h4>
+                                    <div class="flex items-center gap-2">
+                                        <button onclick="playBacaanAudio('${b.name}')" class="px-3 py-1.5 bg-islamic-600 hover:bg-islamic-700 text-white text-xs font-semibold rounded-lg flex items-center gap-1.5 shadow-sm">
+                                            <i class="fa-solid fa-volume-high"></i> DENGARKAN
+                                        </button>
+                                        <button onclick="playBacaanAudio('${b.name}')" class="px-2.5 py-1.5 bg-slate-200 dark:bg-slate-600 text-slate-700 dark:text-slate-200 text-xs rounded-lg" title="Ulangi">
+                                            <i class="fa-solid fa-rotate-right"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="p-4 bg-white dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700 text-center">
+                                    <p class="font-arabic text-xl sm:text-2xl text-slate-800 dark:text-slate-100 leading-loose">${b.arabic}</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Transliterasi (Latin)</p>
+                                    <p class="text-xs sm:text-sm italic text-slate-600 dark:text-slate-300">${b.latin}</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Terjemahan</p>
+                                    <p class="text-xs sm:text-sm text-slate-700 dark:text-slate-300 font-medium">${b.arti}</p>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        function playBacaanAudio(name) {
+            if (!audioEnabled) {
+                showModal("Audio Muted", "Audio sedang dimatikan. Aktifkan tombol volume di atas.");
+                return;
+            }
+            showModal("Audio Pemutar", `Memutar audio bacaan: ${name}. (Simulasi suara bacaan berkualitas tinggi).`);
+        }
+
+        function renderTutorialVideo(container) {
+            container.innerHTML = `
+                <div class="space-y-6">
+                    <div class="border-b border-slate-100 dark:border-slate-700 pb-4">
+                        <span class="text-xs font-bold text-islamic-600 uppercase tracking-wider">L. Video Tutorial</span>
+                        <h2 class="text-xl sm:text-2xl font-bold text-slate-800 dark:text-slate-100 mt-1">Video Panduan Praktik Sholat</h2>
+                    </div>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">Tonton video tutorial gerakan dan bacaan sholat yang benar untuk siswa kelas 7 SMP:</p>
+
+                    <div class="aspect-video w-full rounded-2xl bg-slate-900 overflow-hidden relative shadow-md flex items-center justify-center border border-slate-200 dark:border-slate-700">
+                        <div class="text-center p-6 space-y-3">
+                            <div class="w-16 h-16 rounded-full bg-islamic-600 text-white flex items-center justify-center text-2xl mx-auto shadow-lg cursor-pointer hover:scale-110 transition" onclick="showModal('Video', 'Memutar video tutorial panduan sholat.')">
+                                <i class="fa-solid fa-play ml-1"></i>
+                            </div>
+                            <h4 class="font-bold text-white text-base">Tutorial Praktik Sholat Lengkap (Kelas 7)</h4>
+                            <p class="text-xs text-slate-400">Klik untuk memutar video panduan resmi pembelajaran PAI.</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderLatihanSoal(container) {
+            container.innerHTML = `
+                <div class="space-y-6">
+                    <div class="border-b border-slate-100 dark:border-slate-700 pb-4">
+                        <span class="text-xs font-bold text-islamic-600 uppercase tracking-wider">M. Latihan Soal</span>
+                        <h2 class="text-xl sm:text-2xl font-bold text-slate-800 dark:text-slate-100 mt-1">Latihan Mandiri (20 Soal)</h2>
+                    </div>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">Kerjakan soal latihan di bawah ini untuk memperkuat pemahaman materi:</p>
+
+                    <div class="space-y-6">
+                        ${latihanSoalData.map(l => `
+                            <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-700 space-y-3">
+                                <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm">Soal ${l.id}. ${l.pertanyaan}</h4>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                    ${l.opsi.map((op, oIdx) => `
+                                        <button onclick="checkLatihan(${l.id}, ${oIdx}, ${l.kunci})" id="latihan_${l.id}_opt_${oIdx}" class="p-3 text-left rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-islamic-500 text-xs sm:text-sm font-medium transition">
+                                            ${op}
+                                        </button>
+                                    `).join('')}
+                                </div>
+                                <div id="latihan_feedback_${l.id}" class="hidden p-3 rounded-xl text-xs mt-2"></div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        function checkLatihan(soalId, selectedIdx, correctIdx) {
+            const feedback = document.getElementById(`latihan_feedback_${soalId}`);
+            feedback.classList.remove('hidden');
+            if (selectedIdx === correctIdx) {
+                feedback.className = "p-3 rounded-xl text-xs mt-2 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-700";
+                feedback.innerHTML = `<i class="fa-solid fa-circle-check mr-1"></i> Benar! ${latihanSoalData[soalId-1].penjelasan}`;
+            } else {
+                feedback.className = "p-3 rounded-xl text-xs mt-2 bg-rose-50 dark:bg-rose-900/30 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-700";
+                feedback.innerHTML = `<i class="fa-solid fa-circle-xmark mr-1"></i> Kurang tepat. Jawaban yang benar adalah: ${latihanSoalData[soalId-1].opsi[correctIdx]}. ${latihanSoalData[soalId-1].penjelasan}`;
+            }
+        }
+
+        function renderKuisInteraktif(container) {
+            if (!quizSubmitted && !timerInterval) {
+                quizTimer = 0;
+                timerInterval = setInterval(() => { quizTimer++; }, 1000);
+            }
+
+            container.innerHTML = `
+                <div class="space-y-6">
+                    <div class="border-b border-slate-100 dark:border-slate-700 pb-4 flex items-center justify-between">
+                        <div>
+                            <span class="text-xs font-bold text-islamic-600 uppercase tracking-wider">N. Kuis Interaktif</span>
+                            <h2 class="text-xl sm:text-2xl font-bold text-slate-800 dark:text-slate-100 mt-1">Uji Kompetensi Sholat (20 Soal)</h2>
+                        </div>
+                        <div class="px-3 py-1.5 rounded-xl bg-islamic-50 dark:bg-islamic-900/40 text-islamic-700 dark:text-islamic-300 text-xs font-bold border border-islamic-200 dark:border-islamic-800 flex items-center gap-1.5">
+                            <i class="fa-solid fa-stopwatch"></i> <span id="quizTimerDisplay">00:00</span>
+                        </div>
+                    </div>
+
+                    <div class="space-y-6" id="quizQuestionsContainer">
+                        ${kuisData.map((k, idx) => `
+                            <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-700 space-y-3">
+                                <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm">Pertanyaan ${idx + 1}. ${k.q}</h4>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                    ${k.options.map((op, oIdx) => `
+                                        <button onclick="selectQuizAnswer(${idx}, ${oIdx})" id="quiz_${idx}_opt_${oIdx}" class="p-3 text-left rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-islamic-500 text-xs sm:text-sm font-medium transition">
+                                            ${op}
+                                        </button>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+
+                    <div class="pt-4 flex justify-center">
+                        <button onclick="submitQuiz()" class="px-8 py-3.5 bg-islamic-600 hover:bg-islamic-700 text-white font-bold rounded-2xl shadow-lg shadow-islamic-600/30 transition text-base">
+                            <i class="fa-solid fa-paper-plane mr-2"></i> SELESAI & KIRIM JAWABAN KUIS
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            // Update timer display interval
+            setInterval(() => {
+                const mins = Math.floor(quizTimer / 60).toString().padStart(2, '0');
+                const secs = (quizTimer % 60).toString().padStart(2, '0');
+                const timerEl = document.getElementById('quizTimerDisplay');
+                if (timerEl) timerEl.innerText = `${mins}:${secs}`;
+            }, 1000);
+        }
+
+        function selectQuizAnswer(qIdx, optIdx) {
+            quizAnswers[qIdx] = optIdx;
+            // Highlight selected option
+            const k = kuisData[qIdx];
+            k.options.forEach((_, oIdx) => {
+                const btn = document.getElementById(`quiz_${qIdx}_opt_${oIdx}`);
+                if (oIdx === optIdx) {
+                    btn.className = "p-3 text-left rounded-xl bg-islamic-600 text-white border border-islamic-600 text-xs sm:text-sm font-bold shadow-sm";
+                } else {
+                    btn.className = "p-3 text-left rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs sm:text-sm font-medium";
+                }
+            });
+        }
+
+        function submitQuiz() {
+            clearInterval(timerInterval);
+            quizSubmitted = true;
+            
+            let correctCount = 0;
+            kuisData.forEach((k, idx) => {
+                if (quizAnswers[idx] === k.answer) {
+                    correctCount++;
+                }
+            });
+
+            const incorrectCount = kuisData.length - correctCount;
+            const score = Math.round((correctCount / kuisData.length) * 100);
+
+            localStorage.setItem('pai_last_score', score);
+            localStorage.setItem('pai_last_correct', correctCount);
+            localStorage.setItem('pai_last_incorrect', incorrectCount);
+            localStorage.setItem('pai_last_time', `${Math.floor(quizTimer/60)}m ${quizTimer%60}s`);
+
+            showModal("Hasil Kuis", `Anda berhasil menyelesaikan kuis!\nJumlah Benar: ${correctCount}\nJumlah Salah: ${incorrectCount}\nNilai Anda: ${score} / 100`);
+            loadSection(18); // Redirect to Nilai Saya
+        }
+
+        function renderEvaluasi(container) {
+            container.innerHTML = `
+                <div class="space-y-6">
+                    <div class="border-b border-slate-100 dark:border-slate-700 pb-4">
+                        <span class="text-xs font-bold text-islamic-600 uppercase tracking-wider">O. Evaluasi</span>
+                        <h2 class="text-xl sm:text-2xl font-bold text-slate-800 dark:text-slate-100 mt-1">Kirim Hasil Evaluasi ke Guru</h2>
+                    </div>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">Masukkan nama dan kelas Anda untuk mengirimkan hasil belajar dan nilai evaluasi langsung ke Google Sheets guru:</p>
+
+                    <div class="p-6 rounded-2xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-700 space-y-4 max-w-lg mx-auto">
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">Nama Lengkap Siswa</label>
+                            <input type="text" id="inputStudentName" value="${studentName}" placeholder="Contoh: Ahmad Fauzan" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 text-sm focus:outline-none focus:ring-2 focus:ring-islamic-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">Kelas</label>
+                            <input type="text" id="inputStudentClass" value="${studentClass}" placeholder="Contoh: Kelas 7A" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 text-sm focus:outline-none focus:ring-2 focus:ring-islamic-500">
+                        </div>
+                        <button onclick="sendEvaluationToSheets()" class="w-full py-3.5 bg-islamic-600 hover:bg-islamic-700 text-white font-bold rounded-xl shadow-lg transition flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-cloud-arrow-up"></i> KIRIM HASIL EVALUASI KE GOOGLE SHEETS
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function sendEvaluationToSheets() {
+            const name = document.getElementById('inputStudentName').value.trim();
+            const cls = document.getElementById('inputStudentClass').value.trim();
+            if (!name || !cls) {
+                showModal("Peringatan", "Mohon masukkan Nama Lengkap dan Kelas Anda terlebih dahulu.");
+                return;
+            }
+
+            studentName = name;
+            studentClass = cls;
+            localStorage.setItem('pai_student_name', name);
+            localStorage.setItem('pai_student_class', cls);
+
+            const score = localStorage.getItem('pai_last_score') || '0';
+            const correct = localStorage.getItem('pai_last_correct') || '0';
+            const incorrect = localStorage.getItem('pai_last_incorrect') || '20';
+            const time = localStorage.getItem('pai_last_time') || '0m';
+
+            // Check if Google Sheets URL is placeholder
+            if (GOOGLE_SHEETS_URL.includes('PLACEHOLDER')) {
+                showModal("Informasi Google Sheets", "Data belum terhubung ke Google Sheets. Silakan hubungi guru.\n\n(Catatan: Data tersimpan lokal di perangkat Anda).");
+                return;
+            }
+
+            // Send via fetch
+            const data = {
+                tanggal: new Date().toISOString().split('T')[0],
+                nama: name,
+                kelas: cls,
+                materi: "Sholat Lima Waktu",
+                jumlahSoal: 20,
+                benar: correct,
+                salah: incorrect,
+                nilai: score,
+                persentase: `${score}%`,
+                waktu: time,
+                refleksi: studentRefleksi.paham || '-'
+            };
+
+            fetch(GOOGLE_SHEETS_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            }).then(() => {
+                showModal("Berhasil", "Hasil evaluasi berhasil dikirim ke Google Sheets guru!");
+            }).catch(() => {
+                showModal("Catatan", "Data belum terhubung ke Google Sheets. Silakan hubungi guru.");
+            });
+        }
+
+        function renderNilaiSaya(container) {
+            const score = localStorage.getItem('pai_last_score') || 'Belum Kuis';
+            const correct = localStorage.getItem('pai_last_correct') || '0';
+            const incorrect = localStorage.getItem('pai_last_incorrect') || '0';
+            const time = localStorage.getItem('pai_last_time') || '-';
+
+            container.innerHTML = `
+                <div class="space-y-6">
+                    <div class="border-b border-slate-100 dark:border-slate-700 pb-4">
+                        <span class="text-xs font-bold text-islamic-600 uppercase tracking-wider">P. Nilai Saya</span>
+                        <h2 class="text-xl sm:text-2xl font-bold text-slate-800 dark:text-slate-100 mt-1">Rekapitulasi Nilai & Hasil Belajar</h2>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div class="p-5 rounded-2xl bg-islamic-50 dark:bg-islamic-900/30 border border-islamic-200 dark:border-islamic-800 text-center">
+                            <span class="text-xs font-bold text-islamic-700 dark:text-islamic-300 uppercase">Nilai Akhir</span>
+                            <h3 class="text-3xl font-extrabold text-islamic-600 dark:text-islamic-400 mt-2">${score}</h3>
+                        </div>
+                        <div class="p-5 rounded-2xl bg-emerald-50 dark:bg-emerald-900/30 border border-emerald-200 dark:border-emerald-800 text-center">
+                            <span class="text-xs font-bold text-emerald-700 dark:text-emerald-300 uppercase">Jawaban Benar</span>
+                            <h3 class="text-3xl font-extrabold text-emerald-600 dark:text-emerald-400 mt-2">${correct}</h3>
+                        </div>
+                        <div class="p-5 rounded-2xl bg-rose-50 dark:bg-rose-900/30 border border-rose-200 dark:border-rose-800 text-center">
+                            <span class="text-xs font-bold text-rose-700 dark:text-rose-300 uppercase">Jawaban Salah</span>
+                            <h3 class="text-3xl font-extrabold text-rose-600 dark:text-rose-400 mt-2">${incorrect}</h3>
+                        </div>
+                        <div class="p-5 rounded-2xl bg-slate-100 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-700 text-center">
+                            <span class="text-xs font-bold text-slate-600 dark:text-slate-300 uppercase">Waktu Pengerjaan</span>
+                            <h3 class="text-xl font-bold text-slate-800 dark:text-slate-100 mt-3">${time}</h3>
+                        </div>
+                    </div>
+
+                    <div class="p-6 rounded-2xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-700 space-y-3">
+                        <h4 class="font-bold text-slate-800 dark:text-slate-100 text-sm flex items-center gap-2">
+                            <i class="fa-solid fa-award text-amber-500"></i> Feedback Belajar
+                        </h4>
+                        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                            ${score >= 75 ? 'Hebat! Anda telah menguasai materi sholat lima waktu dengan sangat baik. Pertahankan kedisiplinan ibadah sholat Anda.' : 'Tetap semangat! Silakan ulangi materi bacaan dan tata cara sholat, lalu kerjakan kuis kembali untuk meningkatkan pemahaman Anda.'}
+                        </p>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderRefleksi(container) {
+            container.innerHTML = `
+                <div class="space-y-6">
+                    <div class="border-b border-slate-100 dark:border-slate-700 pb-4">
+                        <span class="text-xs font-bold text-islamic-600 uppercase tracking-wider">Q. Refleksi</span>
+                        <h2 class="text-xl sm:text-2xl font-bold text-slate-800 dark:text-slate-100 mt-1">Refleksi Pembelajaran Siswa</h2>
+                    </div>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">Jawablah pertanyaan refleksi di bawah ini dengan jujur untuk evaluasi diri:</p>
+
+                    <div class="space-y-4 max-w-2xl mx-auto">
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1">1. Apa yang saya pahami hari ini?</label>
+                            <textarea id="refPaham" oninput="saveRefleksi()" rows="3" class="w-full p-3 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 text-sm focus:outline-none focus:ring-2 focus:ring-islamic-500" placeholder="Tuliskan pemahamanmu...">${studentRefleksi.paham}</textarea>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1">2. Bacaan apa yang masih perlu saya hafalkan?</label>
+                            <textarea id="refHafal" oninput="saveRefleksi()" rows="3" class="w-full p-3 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 text-sm focus:outline-none focus:ring-2 focus:ring-islamic-500" placeholder="Contoh: Doa iftitah atau tahiyyat...">${studentRefleksi.hafal}</textarea>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1">3. Bagian tata cara sholat apa yang masih perlu saya pelajari?</label>
+                            <textarea id="refTataCara" oninput="saveRefleksi()" rows="3" class="w-full p-3 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 text-sm focus:outline-none focus:ring-2 focus:ring-islamic-500" placeholder="Tuliskan bagian gerakan...">${studentRefleksi.tataCara}</textarea>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1">4. Apa yang akan saya lakukan agar sholat lima waktu lebih tertib?</label>
+                            <textarea id="refTertib" oninput="saveRefleksi()" rows="3" class="w-full p-3 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 text-sm focus:outline-none focus:ring-2 focus:ring-islamic-500" placeholder="Tuliskan komitmenmu...">${studentRefleksi.tertib}</textarea>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function saveRefleksi() {
+            studentRefleksi.paham = document.getElementById('refPaham').value;
+            studentRefleksi.hafal = document.getElementById('refHafal').value;
+            studentRefleksi.tataCara = document.getElementById('refTataCara').value;
+            studentRefleksi.tertib = document.getElementById('refTertib').value;
+
+            localStorage.setItem('pai_ref_paham', studentRefleksi.paham);
+            localStorage.setItem('pai_ref_hafal', studentRefleksi.hafal);
+            localStorage.setItem('pai_ref_tatacara', studentRefleksi.tataCara);
+            localStorage.setItem('pai_ref_tertib', studentRefleksi.tertib);
+        }
+
+        function renderSumberBelajar(container) {
+            container.innerHTML = `
+                <div class="space-y-6">
+                    <div class="border-b border-slate-100 dark:border-slate-700 pb-4">
+                        <span class="text-xs font-bold text-islamic-600 uppercase tracking-wider">R. Sumber Belajar</span>
+                        <h2 class="text-xl sm:text-2xl font-bold text-slate-800 dark:text-slate-100 mt-1">Daftar Pustaka & Sumber Referensi</h2>
+                    </div>
+                    <div class="space-y-3 text-sm text-slate-600 dark:text-slate-300">
+                        <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-700">
+                            <h4 class="font-bold text-slate-800 dark:text-slate-100">1. Buku Paket PAI & Budi Pekerti Kelas VII SMP</h4>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi Republik Indonesia.</p>
+                        </div>
+                        <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-700">
+                            <h4 class="font-bold text-slate-800 dark:text-slate-100">2. Al-Qur'an dan Terjemahannya</h4>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Kementerian Agama Republik Indonesia.</p>
+                        </div>
+                        <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-700">
+                            <h4 class="font-bold text-slate-800 dark:text-slate-100">3. Fiqih Ibadah Sehari-hari</h4>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Panduan praktis ibadah sholat fardhu dan sunnah.</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Modal Utility
+        function showModal(title, message) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalMessage').innerText = message;
+            document.getElementById('modalContainer').classList.remove('hidden');
+            document.getElementById('modalContainer').classList.add('flex');
+        }
+
+        function closeModal() {
+            document.getElementById('modalContainer').classList.remove('flex');
+            document.getElementById('modalContainer').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
